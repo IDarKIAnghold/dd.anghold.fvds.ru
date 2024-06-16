@@ -1,0 +1,231 @@
+{
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
+    "file": "font/fa-brands-400.DHHcbFjz.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
+    "file": "font/fa-brands-400.Ch568Ea9.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf": {
+    "file": "font/fa-regular-400.C54-fRIQ.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
+    "file": "font/fa-regular-400.9VThgXHM.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf": {
+    "file": "font/fa-solid-900.Cm9M9sZB.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
+    "file": "font/fa-solid-900.QWY35r5r.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
+  },
+  "resources/js/Pages/about.vue": {
+    "file": "js/about.Bt2Tlq-9.js",
+    "name": "about",
+    "src": "resources/js/Pages/about.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "css/about.BUfXB7a8.css"
+    ]
+  },
+  "resources/js/Pages/auth/form.vue": {
+    "file": "js/form.DmIWzfD7.js",
+    "name": "form",
+    "src": "resources/js/Pages/auth/form.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "css/form.Cl4qsURM.css"
+    ]
+  },
+  "resources/js/Pages/auth/login.vue": {
+    "file": "js/login.CRTgqwhm.js",
+    "name": "login",
+    "src": "resources/js/Pages/auth/login.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "css/login.CzBSw66U.css"
+    ]
+  },
+  "resources/js/Pages/auth/profile.vue": {
+    "file": "js/profile.CdhD5-6v.js",
+    "name": "profile",
+    "src": "resources/js/Pages/auth/profile.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "css/profile.B5Wj4VJq.css"
+    ]
+  },
+  "resources/js/Pages/auth/register.vue": {
+    "file": "js/register.BMdJTFs9.js",
+    "name": "register",
+    "src": "resources/js/Pages/auth/register.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "css/register.lSvXMmJB.css"
+    ]
+  },
+  "resources/js/Pages/auth/reviews.vue": {
+    "file": "js/reviews.D_nBYi2B.js",
+    "name": "reviews",
+    "src": "resources/js/Pages/auth/reviews.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "css/reviews.BUQ96Xpx.css"
+    ]
+  },
+  "resources/js/Pages/cart.vue": {
+    "file": "js/cart.CMPOIVxb.js",
+    "name": "cart",
+    "src": "resources/js/Pages/cart.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "css/cart.2fhjyIML.css"
+    ]
+  },
+  "resources/js/Pages/catalog.vue": {
+    "file": "js/catalog.D9hCiF8M.js",
+    "name": "catalog",
+    "src": "resources/js/Pages/catalog.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "css/catalog.zHGr8sA-.css"
+    ]
+  },
+  "resources/js/Pages/email/EmailVerified.vue": {
+    "file": "js/EmailVerified.CVRcN6HP.js",
+    "name": "EmailVerified",
+    "src": "resources/js/Pages/email/EmailVerified.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/errors/Errors.vue": {
+    "file": "js/Errors.dKpQR3iO.js",
+    "name": "Errors",
+    "src": "resources/js/Pages/errors/Errors.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/favorite.vue": {
+    "file": "js/favorite.DdzpTzHo.js",
+    "name": "favorite",
+    "src": "resources/js/Pages/favorite.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "css/favorite.By6Liykf.css"
+    ]
+  },
+  "resources/js/Pages/index.vue": {
+    "file": "js/index.Bcln0tXN.js",
+    "name": "index",
+    "src": "resources/js/Pages/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "css/index.NQaGoU_r.css"
+    ]
+  },
+  "resources/js/Pages/orders/order.vue": {
+    "file": "js/order.DROjiAuE.js",
+    "name": "order",
+    "src": "resources/js/Pages/orders/order.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "css/order.D070TbkA.css"
+    ]
+  },
+  "resources/js/Pages/orders/orderDone.vue": {
+    "file": "js/orderDone.BnN90DZY.js",
+    "name": "orderDone",
+    "src": "resources/js/Pages/orders/orderDone.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/product.vue": {
+    "file": "js/product.BUT0dcwz.js",
+    "name": "product",
+    "src": "resources/js/Pages/product.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "css/product.BwhL9dZj.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "js/app.CqJCRoH7.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/Pages/about.vue",
+      "resources/js/Pages/auth/form.vue",
+      "resources/js/Pages/auth/login.vue",
+      "resources/js/Pages/auth/profile.vue",
+      "resources/js/Pages/auth/register.vue",
+      "resources/js/Pages/auth/reviews.vue",
+      "resources/js/Pages/cart.vue",
+      "resources/js/Pages/catalog.vue",
+      "resources/js/Pages/email/EmailVerified.vue",
+      "resources/js/Pages/errors/Errors.vue",
+      "resources/js/Pages/favorite.vue",
+      "resources/js/Pages/index.vue",
+      "resources/js/Pages/orders/order.vue",
+      "resources/js/Pages/orders/orderDone.vue",
+      "resources/js/Pages/product.vue"
+    ],
+    "css": [
+      "css/app.Q4vBxGOH.css"
+    ],
+    "assets": [
+      "font/fa-solid-900.QWY35r5r.woff2",
+      "font/fa-solid-900.Cm9M9sZB.ttf",
+      "font/fa-regular-400.9VThgXHM.woff2",
+      "font/fa-regular-400.C54-fRIQ.ttf",
+      "font/fa-brands-400.Ch568Ea9.woff2",
+      "font/fa-brands-400.DHHcbFjz.ttf"
+    ]
+  }
+}

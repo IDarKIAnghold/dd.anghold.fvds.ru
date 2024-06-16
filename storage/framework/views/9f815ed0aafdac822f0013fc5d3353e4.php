@@ -1,0 +1,1 @@
+<time class="mb-0 text-capitalize">May 30, 2024<span class="text-muted d-block">Thu, 10:05</span></time><?php /**PATH D:\диплом\domains\laravel-vue-orchid\storage\framework\views/26b21f096a9327f3f30528ccbb5d9776.blade.php ENDPATH**/ ?>

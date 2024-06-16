@@ -1,0 +1,1 @@
+<time class="mb-0 text-capitalize">Jan 1, 2020<span class="text-muted d-block">Wed, 12:00</span></time>
