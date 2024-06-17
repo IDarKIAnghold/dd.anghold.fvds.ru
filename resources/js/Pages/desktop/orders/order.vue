@@ -111,7 +111,6 @@ const handleUnFocus = (event) => {
 </script>
 
 <template>
-    {{ $page.props.totalPrice }}
     <Head>
         <title>Оформление заказа</title>
     </Head>

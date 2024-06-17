@@ -12,9 +12,7 @@ import { Link } from '@inertiajs/vue3'
             </div>
             <div class="type-caption">
                 <div class="type-title">
-                    <Link :href="'/type/' + item.name">
-                    {{ item.name__ru }}
-                    </Link>
+                    <Link :href="'/type/' + item.name">{{ item.name__ru }}</Link>
                 </div>
             </div>
         </div>

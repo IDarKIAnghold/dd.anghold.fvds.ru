@@ -21,7 +21,7 @@
     <header class="sticky-top" style="top: 0; z-index:1050" id="navigation"></header>
 
     <main class="wrapper">
-        <div class="mt-5 mb-5 ps-3 pe-3">
+        <div class="mt-5 mb-5 ps-3 pe-3 maincontainer">
             <div class="container-xxl py-4 main" id="main">@inertia</div>
         </div>
     </main>
@@ -35,7 +35,7 @@
     @routes
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     @vite(['resources/js/app.js'])
-    @vite(["resources/js/Pages/{$page['component']}.vue"])
+    {{-- @vite(["resources/js/Pages/{$page['component']}.vue"]) --}}
 </body>
 
 </html>

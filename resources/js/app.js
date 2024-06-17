@@ -12,9 +12,6 @@ import NProgress from "nprogress";
 import { InertiaProgress } from "@inertiajs/progress";
 import "nprogress/nprogress.css";
 
-import Footer from "./Pages/Partials/Footer.vue";
-import Nav from "./Pages/Partials/Navigation.vue";
-
 const pinia = createPinia();
 const appName = import.meta.env.VITE_APP_NAME || "Guitar World";
 
@@ -24,37 +21,67 @@ InertiaProgress.init({
   showSpinner: true,
 });
 
+// Function to determine if the user is on a mobile device
+function isMobileDevice() {
+  return window.innerWidth <= 768;
+}
+
+const mobilePages = import.meta.glob("./Pages/mobile/**/*.vue");
+const desktopPages = import.meta.glob("./Pages/desktop/**/*.vue");
+
+const FooterAndNav = isMobileDevice() ? "mobile" : "desktop";
+
+const components = {
+  mobile: {
+    Footer: () => import("./Pages/mobile/Partials/Footer.vue"),
+    Navigation: () => import("./Pages/mobile/Partials/Navigation.vue"),
+  },
+  desktop: {
+    Footer: () => import("./Pages/desktop/Partials/Footer.vue"),
+    Navigation: () => import("./Pages/desktop/Partials/Navigation.vue"),
+  },
+};
+
 createInertiaApp({
   title: (title) => `${title}`,
-  resolve: (name) =>
-    resolvePageComponent(
-      `./Pages/${name}.vue`,
-      import.meta.glob("./Pages/**/*.vue")
-    ),
+  resolve: (name) => {
+    const pages = isMobileDevice() ? mobilePages : desktopPages;
+    return resolvePageComponent(
+      `./Pages/${isMobileDevice() ? "mobile" : "desktop"}/${name}.vue`,
+      pages
+    );
+  },
   setup({ el, App, props, plugin }) {
     const mainEl = document.getElementById("main");
+
+    const { Footer, Navigation } = components[FooterAndNav];
+
+    Footer().then((FooterComponent) => {
+      const footerEl = document.getElementById("footer");
+      createApp(FooterComponent.default)
+        .use(plugin)
+        .use(pinia)
+        .use(ZiggyVue)
+        .use(PrimeVue)
+        .mount(footerEl);
+    });
+
+    Navigation().then((NavComponent) => {
+      const navigationEl = document.getElementById("navigation");
+      createApp(NavComponent.default)
+        .use(plugin)
+        .use(pinia)
+        .use(ZiggyVue)
+        .use(PrimeVue)
+        .mount(navigationEl);
+    });
+
     const app = createApp({ render: () => h(App, props) })
       .use(plugin)
       .use(pinia)
       .use(ZiggyVue)
       .use(PrimeVue)
       .mount(mainEl);
-
-    const navigationEl = document.getElementById("navigation");
-    createApp(Nav)
-      .use(plugin)
-      .use(pinia)
-      .use(ZiggyVue)
-      .use(PrimeVue)
-      .mount(navigationEl);
-
-    const footerEl = document.getElementById("footer");
-    createApp(Footer)
-      .use(plugin)
-      .use(pinia)
-      .use(ZiggyVue)
-      .use(PrimeVue)
-      .mount(footerEl);
 
     // Event listeners for Inertia navigation to control NProgress
     document.addEventListener("inertia:start", () => {

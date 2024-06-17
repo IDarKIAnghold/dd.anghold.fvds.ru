@@ -1,5 +1,5 @@
 <script setup lang="jsx">
-import { ref } from 'vue';
+import { ref, toRefs, reactive } from 'vue';
 import { Head, usePage, router } from '@inertiajs/vue3';
 
 import TypeCard from "@/Components/Catalog/TypeCard.vue";
@@ -12,6 +12,20 @@ const filter = (params, text) => {
 
 const top = ref(null);
 let timeoutId
+
+const state = reactive({
+    visibleSections: {}
+});
+
+const ShoweFilter = ref(false);
+
+function toggleVisibility(section) {
+    state.visibleSections[section] = !state.visibleSections[section];
+}
+
+function isVisible(section) {
+    return !!state.visibleSections[section];
+}
 
 const applyFilters = () => {
     top.value = null
@@ -86,30 +100,35 @@ const box_show = (e) => {
             {{ $page.props.name }}
         </title>
     </Head>
-    <div class="catalogs" :class="$page.props.filter ? 'd-flex' : ''">
-        <div class="w-25 me-5 row" v-if="$page.props.filter">
+    <template v-if="$page.props.filter">
+        <div class="row filtersTab" v-if="ShoweFilter">
             <div class="p-0 m-0">
+                <div class="mb-3">
+                    <span @click="ShoweFilter = false">Закрыть фильтры</span>
+                </div>
                 <div class="filter_block">
                     <div v-if="top" @click="applyFilters" class="apply-filters-float-btn" :style="{ 'top': top + 'px' }"
                         data-label="Показать">
                     </div>
                     <div class="price">
-                        <h6>Цена</h6>
-                        <input type="number" name="minPrice" id="minPrice" class="my-1 p-1 w-100"
-                            :placeholder="'Минимальная Цена ' + (Object.keys(route().params).length >= 1 ? usePage().props.filter.minPrice : usePage().props.filter.AbsoluteminPrice)"
-                            :value="route().params['price'] ? (route().params['price'].split('-')[0] != 0 ? route().params['price'].split('-')[0] : '') : ''">
+                        <h6 @click="toggleVisibility('price')">Цена</h6>
+                        <div v-show="isVisible('price')">
+                            <input type="number" name="minPrice" id="minPrice" class="my-1 p-1 w-100"
+                                :placeholder="'Минимальная Цена ' + (Object.keys(route().params).length >= 1 ? usePage().props.filter.minPrice : usePage().props.filter.AbsoluteminPrice)"
+                                :value="route().params['price'] ? (route().params['price'].split('-')[0] != 0 ? route().params['price'].split('-')[0] : '') : ''">
 
-                        <input type="number" name="maxPrice" id="maxPrice" class="my-1 p-1 w-100"
-                            :placeholder="'Максимальная Цена ' + (Object.keys(route().params).length >= 1 ? usePage().props.filter.maxPrice : usePage().props.filter.AbsolutemaxPrice)"
-                            :value="route().params['price'] ? (route().params['price'].split('-')[1] != $page.props.filter.AbsolutemaxPrice ? route().params['price'].split('-')[1] : '') : ''">
+                            <input type="number" name="maxPrice" id="maxPrice" class="my-1 p-1 w-100"
+                                :placeholder="'Максимальная Цена ' + (Object.keys(route().params).length >= 1 ? usePage().props.filter.maxPrice : usePage().props.filter.AbsolutemaxPrice)"
+                                :value="route().params['price'] ? (route().params['price'].split('-')[1] != $page.props.filter.AbsolutemaxPrice ? route().params['price'].split('-')[1] : '') : ''">
+                        </div>
                     </div>
                     <template v-if="$page.props.filter.manufacturers">
                         <div class="manufacturers">
-                            <h6>Производитель</h6>
-                            <div>
+                            <h6 @click="toggleVisibility('manufacturers')">Производитель</h6>
+                            <div v-show="isVisible('manufacturers')">
                                 <ul class="ps-1">
-                                    <li v-for="(item, index) in $page.props.filter.manufacturers" class="d-flex"
-                                        @click="box_show($event)">
+                                    <li v-for="(item, index) in $page.props.filter.manufacturers" :key="index"
+                                        class="d-flex" @click="box_show($event)">
                                         <span>{{ item.name }}</span>
                                         <input type="checkbox" class="ui-checkbox__input" name="brand"
                                             :id="'brand-' + item.name" :value="item.name"
@@ -120,18 +139,18 @@ const box_show = (e) => {
                             </div>
                         </div>
                     </template>
-                    <template v-for="(item, index) in $page.props.filter.attributes_filter">
+                    <template v-for="(item, index) in $page.props.filter.attributes_filter" :key="index">
                         <template v-if="Object.keys(item).length > 1">
                             <div class="attributes_filter">
-                                <h6 class="attributes_filter-title">{{ index }}</h6>
-                                <div>
+                                <h6 class="attributes_filter-title" @click="toggleVisibility(index)">{{ index }}</h6>
+                                <div v-show="isVisible(index)">
                                     <ul class="ps-1">
-                                        <li v-for="item in item" class="d-flex" @click="box_show($event)">
-                                            <template v-if="item">
-                                                <span>{{ item }}</span>
+                                        <li v-for="attr in item" :key="attr" class="d-flex" @click="box_show($event)">
+                                            <template v-if="attr">
+                                                <span>{{ attr }}</span>
                                                 <input type="checkbox" class="ui-checkbox__input" :name="index"
-                                                    :id="index.replace(' ', '-')" :value="item"
-                                                    :checked="filter(index.replace(' ', '_'), item)">
+                                                    :id="index.replace(' ', '-') + '-' + attr" :value="attr"
+                                                    :checked="filter(index.replace(' ', '_'), attr)">
                                                 <span class="ui-checkbox__box ui-checkbox__box_list"></span>
                                             </template>
                                         </li>
@@ -142,11 +161,15 @@ const box_show = (e) => {
                     </template>
                     <button type="button" class="btn btn-primary  w-100" @click="applyFilters">Применить</button>
                     <button type="button" class="btn btn-light w-100" @click="clearFilters">Сброс</button>
-
                 </div>
             </div>
         </div>
-        <div class="row" :class="$page.props.filter ? 'w-75' : ''">
+    </template>
+    <div class="catalogs">
+        <div class="mb-3">
+            <span @click="ShoweFilter = true">Показать фильтры</span>
+        </div>
+        <div class="row">
             <TypeCard v-if="$page.props.request == 'category'" />
             <TypeProduct v-else-if="$page.props.request == 'type'" />
         </div>
@@ -191,6 +214,216 @@ const box_show = (e) => {
     .row.w-75 {
         height: fit-content;
     }
+
+    span a {
+        cursor: pointer;
+        color: #4a88ec;
+    }
+
+    .card-thumb img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .card-thumb a {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .product-cards {
+        height: fit-content;
+        position: relative;
+        width: 100%;
+        max-height: fit-content;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .product-card,
+    .type-card {
+        /* border: 1px solid #ddd; */
+        transition: all .5s;
+        padding: 10px 20px;
+        position: relative;
+        float: left;
+        height: 300px;
+        word-wrap: break-word;
+
+        flex: 0 1 25%;
+        box-sizing: border-box;
+    }
+
+    .product-card:hover,
+    .type-card:hover {
+        box-shadow: 0 2px 16px rgba(0, 0, 0, .24);
+        transform: translateY(-5px);
+    }
+
+    .type-thumb {
+        width: 100%;
+        height: 220px;
+        text-align: center
+    }
+
+    .type-thumb>a {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .type-thumb img {
+        max-width: 100%;
+        max-height: 220px;
+        height: auto;
+    }
+
+    .type-caption {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .type-title {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .type-title a {
+        text-decoration: none;
+        color: #354751;
+    }
+
+    .offer {
+        color: #fff;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        z-index: 10;
+        text-transform: uppercase;
+    }
+
+    .offer>div {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 3px;
+        font-size: 14px;
+        user-select: none;
+    }
+
+    .offer-hit {
+        background-color: #ff8400;
+    }
+
+    .offer-sale {
+        background-color: #007bff;
+    }
+
+    .fa-xmark {
+        color: red;
+    }
+
+    .card-thumb {
+        height: 150px;
+        text-align: center;
+    }
+
+    .card-thumb img {
+        max-height: 150px;
+    }
+
+    .card-caption {
+        margin-top: 20px;
+    }
+
+    .card-title {
+        height: 75px;
+        overflow: hidden;
+    }
+
+    .card-title a {
+        text-decoration: none;
+        color: #354751;
+    }
+
+    .card-title a:hover,
+    .product-card:hover .card-title a {
+        display: inline;
+        border-bottom: 1px solid #354751;
+    }
+
+    .card-price {
+        font-size: 16px;
+        // margin-top: 15px;
+    }
+
+    .product-buy del {
+        color: #337ab7;
+    }
+
+    .card-desc {
+        width: 100%;
+        max-height: 200px;
+        overflow: hidden scroll;
+    }
+
+    .product-item-thumb {
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .product-item-thumb img {
+        max-height: 500px;
+        display: block;
+        max-width: 100%;
+    }
+
+    .nan__product {
+        display: flex;
+        margin-bottom: 15px;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .product-characteristics__spec {
+        grid-gap: 16px;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        height: 45px;
+    }
+
+    .product-characteristics-content {
+        height: auto;
+    }
+
+    .product-characteristics__spec-title {
+        border-bottom: 1px dotted #ddd;
+    }
+
+    .hits,
+    .sales {
+        height: 370px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+.filtersTab {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 15%;
+    z-index: 5;
+    padding: 2% 5% !important;
 
     .filter_block {
         padding: 0;
@@ -328,207 +561,6 @@ const box_show = (e) => {
             transform-origin: 0 100%;
             width: 3px;
         }
-    }
-
-    span a {
-        cursor: pointer;
-        color: #4a88ec;
-    }
-
-    .card-thumb img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    .card-thumb a {
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-
-    .product-cards {
-        height: fit-content;
-        position: relative;
-        width: 100%;
-        max-height: fit-content;
-        overflow: hidden;
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .product-card,
-    .type-card {
-        /* border: 1px solid #ddd; */
-        transition: all .5s;
-        padding: 10px 20px;
-        position: relative;
-        float: left;
-        width: 220px;
-        height: 300px;
-        word-wrap: break-word;
-
-        flex: 0 1 25%;
-        box-sizing: border-box;
-    }
-
-    .product-card:hover,
-    .type-card:hover {
-        box-shadow: 0 2px 16px rgba(0, 0, 0, .24);
-        transform: translateY(-5px);
-    }
-
-    .type-thumb {
-        width: 100%;
-        height: 220px;
-        text-align: center
-    }
-
-    .type-thumb>a {
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-
-    .type-thumb img {
-        max-width: 100%;
-        max-height: 220px;
-        height: auto;
-    }
-
-    .type-caption {
-        width: 100%;
-        height: 120px;
-    }
-
-    .type-title {
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .type-title a {
-        text-decoration: none;
-        color: #354751;
-    }
-
-    .offer {
-        color: #fff;
-        position: absolute;
-        top: 5px;
-        left: 5px;
-        z-index: 10;
-        text-transform: uppercase;
-    }
-
-    .offer>div {
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        text-align: center;
-        font-weight: bold;
-        margin-bottom: 3px;
-        font-size: 14px;
-        user-select: none;
-    }
-
-    .offer-hit {
-        background-color: #ff8400;
-    }
-
-    .offer-sale {
-        background-color: #007bff;
-    }
-
-    .fa-xmark {
-        color: red;
-    }
-
-    .card-thumb {
-        height: 150px;
-        text-align: center;
-    }
-
-    .card-thumb img {
-        max-height: 150px;
-    }
-
-    .card-caption {
-        margin-top: 20px;
-    }
-
-    .card-title {
-        height: 75px;
-        overflow: hidden;
-    }
-
-    .card-title a {
-        text-decoration: none;
-        color: #354751;
-    }
-
-    .card-title a:hover,
-    .product-card:hover .card-title a {
-        display: inline;
-        border-bottom: 1px solid #354751;
-    }
-
-    .card-price {
-        font-size: 16px;
-        // margin-top: 15px;
-    }
-
-    .product-buy del {
-        color: #337ab7;
-    }
-
-    .card-desc {
-        width: 100%;
-        max-height: 200px;
-        overflow: hidden scroll;
-    }
-
-    .product-item-thumb {
-        padding: 20px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
-
-    .product-item-thumb img {
-        max-height: 500px;
-        display: block;
-        max-width: 100%;
-    }
-
-    .nan__product {
-        display: flex;
-        margin-bottom: 15px;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .product-characteristics__spec {
-        grid-gap: 16px;
-        align-items: center;
-        display: grid;
-        grid-template-columns: 1.5fr 1fr;
-        height: 45px;
-    }
-
-    .product-characteristics-content {
-        height: auto;
-    }
-
-    .product-characteristics__spec-title {
-        border-bottom: 1px dotted #ddd;
-    }
-
-    .hits,
-    .sales {
-        height: 370px;
-        padding-left: 40px;
-        padding-right: 40px;
     }
 }
 </style>

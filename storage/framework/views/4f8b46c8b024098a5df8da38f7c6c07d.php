@@ -21,7 +21,7 @@
     <header class="sticky-top" style="top: 0; z-index:1050" id="navigation"></header>
 
     <main class="wrapper">
-        <div class="mt-5 mb-5 ps-3 pe-3">
+        <div class="mt-5 mb-5 ps-3 pe-3 maincontainer">
             <div class="container-xxl py-4 main" id="main"><?php if (!isset($__inertiaSsrDispatched)) { $__inertiaSsrDispatched = true; $__inertiaSsrResponse = app(\Inertia\Ssr\Gateway::class)->dispatch($page); }  if ($__inertiaSsrResponse) { echo $__inertiaSsrResponse->body; } else { ?><div id="app" data-page="<?php echo e(json_encode($page)); ?>"></div><?php } ?></div>
         </div>
     </main>
@@ -35,7 +35,7 @@
     <?php echo app('Tighten\Ziggy\BladeRouteGenerator')->generate(); ?>
     <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
     <?php echo app('Illuminate\Foundation\Vite')(['resources/js/app.js']); ?>
-    <?php echo app('Illuminate\Foundation\Vite')(["resources/js/Pages/{$page['component']}.vue"]); ?>
+    
 </body>
 
 </html>

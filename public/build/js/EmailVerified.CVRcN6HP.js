@@ -1,3 +1,0 @@
-import{o,c as r,a as s,w as a,u as n,d as e,t as c,F as l,Z as i,j as d,k as _}from"./app.CqJCRoH7.js";const f=e("title",null,`
-            Подтверждение почты
-        `,-1),u={class:"row"},p={class:"d-flex justify-content-center flex-wrap flex-column"},h={class:"text-center"},m={class:"d-flex justify-content-center"},y={__name:"EmailVerified",setup(x){return(t,w)=>(o(),r(l,null,[s(n(i),null,{default:a(()=>[f]),_:1}),e("div",u,[e("div",p,[e("h1",h,c(t.$page.props.message),1),e("div",m,[s(n(_),{href:t.route("profile"),class:"btn btn-primary text-white"},{default:a(()=>[d(" Вернуться в профиль ")]),_:1},8,["href"])])])])],64))}};export{y as default};

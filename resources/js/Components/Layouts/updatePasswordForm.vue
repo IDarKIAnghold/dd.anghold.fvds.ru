@@ -94,6 +94,13 @@ const CloseModal = (event) => {
     </section>
 </template>
 <style lang="scss">
+    @media screen and (max-width: 768px) {
+        .modal-content{
+            width: 100%;
+            min-width: 100%;
+            max-width: 100%;
+        }
+    }
 section {
     form div {
         display: grid;

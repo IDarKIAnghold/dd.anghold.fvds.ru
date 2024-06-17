@@ -213,6 +213,11 @@ const formatDate = function (inputDateString) {
         padding: 5px 2px;
         margin: 5px 0 5px 0;
     }
+    @media screen and (max-width: 768px) {
+        div{
+            grid-template-columns: 6fr  3fr;
+        }
+    }
 }
 
 .product-card-tabs__list .active {

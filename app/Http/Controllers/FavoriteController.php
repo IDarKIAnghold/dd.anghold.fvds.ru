@@ -7,13 +7,25 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 use App\Models\Favorite;
+use App\Models\Products;
 
 class FavoriteController extends Controller
 {
    public function view()
    {
-      $user_id = auth()->id();
-      $favorite = Favorite::with('product')->where('user_id', $user_id)->get();
+      if (auth()->check()) {
+         $user_id = auth()->id();
+         $favorite = Favorite::with('product')->where('user_id', $user_id)->get();
+      } else {
+         $favorite = [];
+         $favoriteItems = session()->get('favorite', []);
+         $productIds = collect($favoriteItems)->pluck('product_id')->toArray();
+         $product = Products::find($productIds);
+         foreach ($product as $key => $value) {
+            $favorite[$value->id]['product'] = $product[$key];
+         }
+      }
+
       return Inertia::render('favorite', [
          'favorite' => $favorite
       ]);
