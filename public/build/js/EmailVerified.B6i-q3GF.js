@@ -1,0 +1,3 @@
+import{o,c as r,b as s,w as a,u as n,Z as c,a as e,t as l,d as i,i as d,F as _}from"./app.BQx0zvW2.js";const f=e("title",null,`
+            Подтверждение почты
+        `,-1),u={class:"row"},p={class:"d-flex justify-content-center flex-wrap flex-column"},h={class:"text-center"},m={class:"d-flex justify-content-center"},y={__name:"EmailVerified",setup(x){return(t,w)=>(o(),r(_,null,[s(n(c),null,{default:a(()=>[f]),_:1}),e("div",u,[e("div",p,[e("h1",h,l(t.$page.props.message),1),e("div",m,[s(n(d),{href:t.route("profile"),class:"btn btn-primary text-white"},{default:a(()=>[i(" Вернуться в профиль ")]),_:1},8,["href"])])])])],64))}};export{y as default};
