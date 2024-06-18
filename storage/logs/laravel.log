@@ -15318,3 +15318,7 @@ Stack trace:
 [stacktrace]
 #0 {main}
 "} 
+[2024-06-18 02:06:29] local.ERROR: Maximum execution time of 30 seconds exceeded {"userId":1,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 30 seconds exceeded at D:\\диплом\\domains\\laravel-vue-orchid\\vendor\\symfony\\mailer\\Transport\\Smtp\\Stream\\AbstractStream.php:81)
+[stacktrace]
+#0 {main}
+"} 

@@ -66,7 +66,7 @@ function inputSearch(event) {
                     </li>
                     <li>
                         <Link class="category_tabs_item" href="/favorite" v-on:click="hideTabs">
-                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
                         Избранное
                         </Link>
                     </li>
@@ -83,7 +83,7 @@ function inputSearch(event) {
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid container-xxl mt-0">
             <div class="navbar-collapses d-flex">
-                <span>
+                <span @click="hideTabs()">
                     <Link href="/">
                     <i class="fa-solid fa-house"></i>
                     <p>Главная</p>
@@ -119,6 +119,10 @@ function inputSearch(event) {
     left: 0;
     z-index: 1;
     padding: 5% 1%;
+
+    .fa-solid.fa-heart {
+        color: black;
+    }
 
     .categories {
         .homepage__catalog>ul {

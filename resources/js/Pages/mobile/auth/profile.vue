@@ -157,7 +157,7 @@ provide('userStore', userStore);
     .w-25 .row {
 
         span,
-        a    {
+        a {
             cursor: pointer;
             user-select: none;
             padding: 10px 0 10px 10px;
@@ -171,7 +171,7 @@ provide('userStore', userStore);
 
     .user-settings-info {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         height: 100%;
         min-height: 165px;
         position: relative;
@@ -180,16 +180,13 @@ provide('userStore', userStore);
     .user-settings-info__left-block {
         align-items: center;
         display: flex;
-        flex-direction: column;
-        padding-left: 14px;
+        flex-direction: row;
         width: 200px;
     }
 
     .user-settings-info__avatar-settings-wrapper {
         border-radius: 50%;
         height: 132px;
-        margin-left: 16px;
-        margin-top: 14px;
         position: relative;
         width: 132px;
     }
@@ -200,14 +197,19 @@ provide('userStore', userStore);
         width: 132px;
     }
 
-    .user-settings-info__left-block>* {
-        user-select: none;
+    .user-settings-info__left-block {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        &>* {
+            user-select: none;
+        }
     }
 
     .user-settings-info__info {
         display: flex;
         flex-direction: column;
-        margin-left: 45px;
         width: 100%;
     }
 
@@ -367,12 +369,6 @@ provide('userStore', userStore);
         font-weight: 700;
     }
 
-    .publish-toggle {
-        position: absolute;
-        right: 40px;
-        bottom: 0;
-    }
-
     .button-profile-ui {
         border: none;
         border-radius: 8px;
@@ -389,9 +385,9 @@ provide('userStore', userStore);
     }
 
     .warning__body {
-        width: 40%;
+        width: 60%;
         position: absolute;
-        right: 0%;
+        top: 25%;
         padding: 10px 5px;
     }
 

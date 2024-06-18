@@ -166,10 +166,6 @@ const handleClick = (typeValue) => {
         color: white;
     }
 
-    .nav ul {
-        margin-left: 25px;
-    }
-
     .signin-active a,
     .signup-active a,
     .password-reset a {

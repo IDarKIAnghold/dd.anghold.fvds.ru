@@ -32,10 +32,10 @@ export default {
     
     position: fixed;
     right:0%;
-    top: 85px;
+    top: 1%;
 
     font-size: 0.875rem;
-    max-width: 350px;
+    max-width: 100%;
 
     border: 1px solid gray;
     border-radius: 8px;

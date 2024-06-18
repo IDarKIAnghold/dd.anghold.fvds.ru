@@ -4,6 +4,12 @@ body {
   /* background-color: #0dcaf02e; */
 }
 
+body:has(
+    .tabs_lists:not([style*="display: none"]):not([style*="display:none"])
+  ) {
+  overflow: hidden;
+}
+
 header {
   box-sizing: border-box;
 }
@@ -94,5 +100,16 @@ i.fa-solid.fa-heart {
   .wrapper .container-xxl .row {
     padding-left: 1%;
     padding-right: 1%;
+  }
+  .maincontainer .container-xxl {
+    padding-top: 0 !important;
+  }
+  div.row {
+    box-sizing: border-box;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
   }
 }

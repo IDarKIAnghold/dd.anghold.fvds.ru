@@ -166,16 +166,21 @@ const box_show = (e) => {
         </div>
     </template>
     <div class="catalogs">
-        <div class="mb-3">
-            <span @click="ShoweFilter = true">Показать фильтры</span>
-        </div>
         <div class="row">
+            <div class="mb-3" v-if="$page.props.filter">
+                <span @click="ShoweFilter = true">Показать фильтры</span>
+            </div>
             <TypeCard v-if="$page.props.request == 'category'" />
             <TypeProduct v-else-if="$page.props.request == 'type'" />
         </div>
     </div>
 </template>
 <style lang="scss">
+body:has(.filtersTab) {
+    overflow: hidden;
+
+}
+
 @keyframes checkbox-check {
     0% {
         border-color: #fff;
@@ -416,18 +421,21 @@ const box_show = (e) => {
     }
 }
 
+// overflow: hidden;
 .filtersTab {
     position: fixed;
     top: 0;
     width: 100%;
     height: 100%;
-    padding-bottom: 15%;
     z-index: 5;
     padding: 2% 5% !important;
+
+    overflow-y: scroll;
 
     .filter_block {
         padding: 0;
         margin: 0;
+        padding-bottom: 20%;
 
         span,
         h6 {

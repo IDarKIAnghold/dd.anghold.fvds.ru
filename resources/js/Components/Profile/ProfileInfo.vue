@@ -38,7 +38,8 @@ const updateviewModalCrop = () => {
                     @click="snowFileInput">
                     <a class="user-settings-info__load-photo-btn">
                         <img class="user-settings-info__avatar-image"
-                            :src='user.img ? "/storage/src/profile/" + user.img : "/storage/src/profile/plug.png"' data-role="avatar">
+                            :src='user.img ? "/storage/src/profile/" + user.img : "/storage/src/profile/plug.png"'
+                            data-role="avatar">
                     </a>
                 </div>
             </div>
@@ -53,10 +54,10 @@ const updateviewModalCrop = () => {
                     <div class="user-settings-info__status-show">Изменить Статус</div>
                 </div> -->
             </div>
+            <ProfileInfoEmail v-if="$page.props.user.email_verified_at == null"></ProfileInfoEmail>
             <div class="publish-toggle">
                 <a href="/logout" type="button" class="bg-light text-dark button-profile-ui exit">Выход</a>
             </div>
-            <ProfileInfoEmail v-if="$page.props.user.email_verified_at == null"></ProfileInfoEmail>
         </div>
     </div>
 </template>

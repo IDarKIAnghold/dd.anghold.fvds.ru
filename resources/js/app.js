@@ -23,7 +23,7 @@ InertiaProgress.init({
 
 // Function to determine if the user is on a mobile device
 function isMobileDevice() {
-  return window.innerWidth <= 768;
+  return window.innerWidth < 768;
 }
 
 const mobilePages = import.meta.glob("./Pages/mobile/**/*.vue");
